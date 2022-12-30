@@ -133,6 +133,8 @@ GEM
     msgpack (1.6.0)
     name_of_person (1.1.1)
       activesupport (>= 5.2.0)
+    net-http (0.3.2)
+      uri
     net-imap (0.3.4)
       date
       net-protocol
@@ -218,6 +220,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
+    uri (0.12.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -251,6 +254,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   name_of_person
+  net-http
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)

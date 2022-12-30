@@ -1,0 +1,49 @@
+<div class="max-w-3xl mx-auto px-4">
+  <div class="flex items-center justify-between">
+    <h1 class="flex-1 font-bold text-3xl">Meeting</h1>
+
+    <div class="flex-wrap lg:flex items-center lg:space-x-3">
+      <%= link_to meetings_path, class: button_class(theme: "transparent") do %>
+      All Meetings
+      <% end %>
+      <%= link_to edit_meeting_path(@meeting), class: button_class(theme:"primary") do %>
+      Edit
+      <% end %>
+    </div>
+  </div>
+
+  <ul class="text-slate-700">
+      <li>
+        <p class="font-semibold">Name:</p>
+        <p><%= @meeting.name %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Location:</p>
+        <p><%= @meeting.location %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Description:</p>
+        <p><%= @meeting.description %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Color:</p>
+        <p><%= @meeting.color %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Duration:</p>
+        <p><%= @meeting.duration %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Payment required:</p>
+        <p><%= @meeting.payment_required %></p>
+      </li>
+      <li>
+        <p class="font-semibold">Price:</p>
+        <p><%= @meeting.price %></p>
+      </li>
+      <li>
+        <p class="font-semibold">User:</p>
+        <p><%= @meeting.user %></p>
+      </li>
+  </ul>
+</div>
