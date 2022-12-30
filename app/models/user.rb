@@ -6,5 +6,7 @@ has_person_name
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :meeting
+  has_many :meetings
+
+  validates :booking_link, presence: true
 end
