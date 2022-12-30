@@ -1,8 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :meetings
-  resources :bookings
     authenticate :user, lambda { |u| u.admin? } do
       mount Sidekiq::Web => '/sidekiq'
     end
@@ -13,6 +11,11 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: "home#dashboard", as: :authenticated_root
   end
+
+  resources :meetings
+  resources :bookings
+
+  get ":booking_link", to: "users#show", as: :user
   
   root to: "home#index"
 end
