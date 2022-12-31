@@ -1,41 +1,12 @@
 <div id="<%= dom_id meeting %>">
-  <p>
-    <strong>Name:</strong>
-    <%= meeting.name %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= meeting.location %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= meeting.description %>
-  </p>
-
-  <p>
-    <strong>Color:</strong>
-    <%= meeting.color %>
-  </p>
-
-  <p>
-    <strong>Duration:</strong>
-    <%= meeting.duration %>
-  </p>
-
-  <p>
-    <strong>Payment required:</strong>
-    <%= meeting.payment_required %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= meeting.price %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= meeting.user_id %>
-  </p>
+  <%= link_to edit_meeting_path(meeting), class: "p-6 border shadow-xl
+  rounded-xl block hover:shadow-lg transition ease-in duration-300 relative
+  overflow-hidden" do %>
+  <div
+    class="h-1 w-full absolute top-0 left-0 right-0"
+    style="background-color: <%= meeting.color %>"
+  ></div>
+  <h3 class="fon-medium text-2xl"><%= meeting.name %></h3>
+  <p class="text-gray-500">View booking page</p>
+  <% end %>
 </div>
