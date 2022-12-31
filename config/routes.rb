@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :meetings
-  resources :bookings
+  resources :bookings, except: :index
 
   get ":booking_link", to: "users#show", as: :user
   

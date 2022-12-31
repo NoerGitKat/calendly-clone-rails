@@ -31,17 +31,13 @@
         <%= form.label :duration, class: label_class %>
           <%= form.number_field :duration, class: input_class %>
       </div>
-  <div class="mb-6">
+  <div class="mb-6 flex items-center">
+    <%= form.check_box :payment_required, class: checkbox_class %>
         <%= form.label :payment_required, class: label_class %>
-          <%= form.check_box :payment_required, class: input_class %>
       </div>
-  <div class="mb-6">
+  <div class="mb-6 lg:w-1/4">
         <%= form.label :price, class: label_class %>
           <%= form.number_field :price, class: input_class %>
-      </div>
-  <div class="mb-6">
-        <%= form.label :user_id, class: label_class %>
-          <%= form.text_field :user_id, class: input_class %>
       </div>
 
 <%= form.submit class: button_class(theme: 'primary') %>
