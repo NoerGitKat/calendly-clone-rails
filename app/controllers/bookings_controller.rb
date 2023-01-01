@@ -51,6 +51,28 @@ class BookingsController < ApplicationController
     end
   end
 
+  # POST
+  def intent
+    @meeting = Meeting.find(params[:_json])
+    amount = @meeting.price * 100
+
+    payment_intent = Stripe::PaymentIntent.create(
+      amount: amount,
+      currency: "USD",
+      automatic_payment_methods: {
+        enabled: true
+      },
+      metadata: {
+        user_id: @meeting.user.id,
+        meeting_id: @meeting.id
+      }
+    )
+
+    respond_to do |format|
+      format.json { render json: { clientSecret: payment_intent["client_secret" ] }}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_booking

@@ -3,9 +3,9 @@
   <% if @meeting.payment_required? %>
   <div
     data-controller="payment"
-    data-payment-item="<%= @meeting.id %>"
-    data-payment-token="<%= form_authenticity_token %>"
-    data-payment-return-url="<%= root_url %> "
+    data-payment-item-value="<%= @meeting.id %>"
+    data-payment-token-value="<%= form_authenticity_token %>"
+    data-payment-return-value-url="<%= root_url %> "
   >
     <h1 class="font-bold text-3xl mb-6">
       New booking for <%= number_to_currency(@meeting.price) %>

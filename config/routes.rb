@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :meetings
   resources :bookings, except: [:index, :new]
 
+  post "payment-intent", to: "bookings#intent"
   get ":booking_link", to: "users#show", as: :user
 
   scope '/:booking_link', as: :user do

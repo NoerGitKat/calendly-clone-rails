@@ -15,20 +15,28 @@ booking.errors.any? %>
 </div>
 <% end %>
 
-<div class="mb-6">
-  <%= form.label :name, class: label_class %> <%= form.text_field :name, class:
-  input_class, data: { payment_target: "name" } %>
+<h3 class="font-bold text-lg mb-3">Personal details</h3>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+  <div>
+    <%= form.label :name, class: label_class %> <%= form.text_field :name, class:
+    input_class, data: { payment_target: "name" } %>
+  </div>
+  <div>
+    <%= form.label :email, class: label_class %> <%= form.text_field :email,
+    class: input_class, data: { payment_target: "email" } %>
+  </div>
 </div>
-<div class="mb-6">
-  <%= form.label :email, class: label_class %> <%= form.text_field :email,
-  class: input_class, data: { payment_target: "email" } %>
-</div>
+
 <div class="mb-6">
   <%= form.label :notes, class: label_class %> <%= form.rich_text_area :notes,
   class: input_class %>
 </div>
 
+
+
 <% if @booking.new_record? %>
+<h3 class="font-bold text-lg mb-3">Booking details</h3>
 <div class="mb-6">
   <div class="rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative"><div
     class="h-1 w-full absolute top-0 left-0 right-0"
@@ -40,7 +48,6 @@ booking.errors.any? %>
     </div>
   </div>
 </div>
-<% else %>
 <% end %>
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
