@@ -20,9 +20,14 @@ class BookingsController < ApplicationController
   # POST /bookings or /bookings.json
   def create
     @booking = Booking.new(booking_params)
+    @meeting = Meeting.find(params[:booking][:meeting_id])
 
     respond_to do |format|
       if @booking.save
+
+        if @meeting.payment_required?
+          @booking.approved!
+        end
         format.html { redirect_to root_url, notice: "Booking was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }

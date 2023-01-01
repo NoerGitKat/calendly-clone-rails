@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   scope '/:booking_link', as: :user do
     resources :bookings, only: [:index, :new]
   end
+  resources :webhooks, only: :create
   
   root to: "home#index"
 end
