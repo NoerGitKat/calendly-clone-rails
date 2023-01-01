@@ -1,4 +1,6 @@
-<%= form_with(model: booking) do |form| %> <% if booking.errors.any? %>
+<%= form_with(model: booking, data: { turbo: false, action:
+"submit->payment#checkout", payment_target: "form"}) do |form| %> <% if
+booking.errors.any? %>
 <div id="error_explanation" class="bg-red-50 p-6 rounded text-red-800">
   <h2 class="text-lg font-semibold mb-3">
     <%= pluralize(booking.errors.count, "error") %> prohibited this booking from
@@ -14,27 +16,45 @@
 <% end %>
 
 <div class="mb-6">
-  <%= form.label :name, class: label_class %> <%= form.text_field :name, class: input_class %>
+  <%= form.label :name, class: label_class %> <%= form.text_field :name, class:
+  input_class, data: { payment_target: "name" } %>
 </div>
 <div class="mb-6">
   <%= form.label :email, class: label_class %> <%= form.text_field :email,
-  class: input_class %>
+  class: input_class, data: { payment_target: "email" } %>
 </div>
 <div class="mb-6">
   <%= form.label :notes, class: label_class %> <%= form.rich_text_area :notes,
   class: input_class %>
 </div>
 
-<div class="grid grid-cols-2 gap-6 mb-6">
+<% if @booking.new_record? %>
+<div class="mb-6">
+  <div class="rounded border-slate-300 border shadow-sm bg-white py-6 px-10 inline-block relative"><div
+    class="h-1 w-full absolute top-0 left-0 right-0"
+    style="background-color: <%= @meeting.color %>"
+  ></div><%= form.label :meeting_id, "Meeting", class: label_class %>
+    <input type="hidden" name="booking[meeting_id]" value="<%= @meeting.id %>">  
+    <div class="flex items-start">
+      <div class="text-3xl font-bold mr-3"><%= params[:meeting] %></div>
+    </div>
+  </div>
+</div>
+<% else %>
+<% end %>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
   <div>
-    <%= form.label :start_at, class: label_class %> <%= form.datetime_field :start_at, class: input_class %>
+    <%= form.label :start_at, class: label_class %> 
+    <%= form.datetime_field :start_at, class: input_class, min: Date.today %>
   </div>
   <div>
-    <%= form.label :end_at, class: label_class %> <%= form.datetime_field :end_at, class: input_class %>
+    <%= form.label :end_at, class: label_class %> 
+    <%= form.datetime_field :end_at, class: input_class, min: Date.today %>
   </div>
 </div>
 
-<%= form.submit class: button_class(theme: 'primary') %> <% if
+<%= form.submit @meeting.payment_required? ? "Book for #{ number_to_currency(@meeting.price) }": "Create Booking", class: button_class(theme: 'primary') %> <% if
 booking.persisted? %> <%= link_to "Cancel", booking, class: "text-neutral-700
 underline inline-block ml-3" %> <% else %> <%= link_to "Cancel", bookings_path,
 class: "text-neutral-700 underline inline-block ml-3" %> <% end %> <% end %>
