@@ -61,7 +61,10 @@ booking.errors.any? %>
   </div>
 </div>
 
-<%= form.submit @meeting.payment_required? ? "Book for #{ number_to_currency(@meeting.price) }": "Create Booking", class: button_class(theme: 'primary') %> <% if
-booking.persisted? %> <%= link_to "Cancel", booking, class: "text-neutral-700
-underline inline-block ml-3" %> <% else %> <%= link_to "Cancel", bookings_path,
-class: "text-neutral-700 underline inline-block ml-3" %> <% end %> <% end %>
+<%= form.submit @meeting.payment_required? ? "Book for #{ number_to_currency(@meeting.price) }": "Create Booking", class: button_class(theme: 'primary'), data: { payment_target: "submit" } %> 
+  <% if booking.persisted? %> 
+    <%= link_to "Cancel", booking, class: "text-neutral-700 underline inline-block ml-3" %> 
+  <% else %> 
+    <%= link_to "Cancel", bookings_path, class: "text-neutral-700 underline inline-block ml-3" %> 
+  <% end %> 
+<% end %>
