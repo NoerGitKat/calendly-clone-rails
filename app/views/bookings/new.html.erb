@@ -1,5 +1,10 @@
 <div class="max-w-3xl mx-auto px-4">
+  <% if @meeting.payment_required? %>
+  <!-- Stripe version -->
+  <h1 class="font-bold text-3xl mb-6">
+    New booking for <%= number_to_currency(@meeting.price) %>
+  </h1>
+  <% else %>
   <h1 class="font-bold text-3xl mb-6">New booking</h1>
-
-  <%= render 'form', booking: @booking %>
+  <% end %> <%= render 'form', booking: @booking %>
 </div>

@@ -22,7 +22,7 @@ meeting1 = Meeting.create!(
   description: "Nice meeting",
   duration: 15,
   location: "Zoom",
-  name: "Nice 15min meeting",
+  name: "15min",
   payment_required: false,
   price: nil,
   user: user
@@ -33,7 +33,7 @@ meeting2 = Meeting.create!(
   description: "Cool meeting",
   duration: 30,
   location: "Zoom",
-  name: "Cool 30min meeting",
+  name: "30min",
   payment_required: false,
   price: nil,
   user: user
@@ -44,8 +44,10 @@ meeting3 = Meeting.create!(
   description: "Ok meeting",
   duration: 60,
   location: "Zoom",
-  name: "Ok 60min meeting",
+  name: "60min",
   payment_required: true,
   price: 125,
   user: user
 )
+
+puts "Reset complete 👨‍💻🎉🔥"

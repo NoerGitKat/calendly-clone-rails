@@ -4,11 +4,13 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1 or /bookings/1.json
   def show
+    @user = User.find_by(email: "noer@noer.com")
   end
 
   # GET /bookings/new
   def new
     @booking = Booking.new
+    @meeting = Meeting.find_by(name: params[:meeting])
   end
 
   # GET /bookings/1/edit

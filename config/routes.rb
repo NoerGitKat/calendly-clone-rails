@@ -13,9 +13,13 @@ Rails.application.routes.draw do
   end
 
   resources :meetings
-  resources :bookings, except: :index
+  resources :bookings, except: [:index, :new]
 
   get ":booking_link", to: "users#show", as: :user
+
+  scope '/:booking_link', as: :user do
+    resources :bookings, only: [:index, :new]
+  end
   
   root to: "home#index"
 end
